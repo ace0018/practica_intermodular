@@ -13,13 +13,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Usuario
+ * JFrame ventana principal
+ * @author Angel Caballero Espinosa
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-
+    /**
+     * Lista de satelites
+     */
     private List<Satelite> satelites = new ArrayList<>();
-    
+    /**
+     * Objeto de conexion con BBDD MySQL
+     */
     private static MySQLConnector connection = null;
     /**
      * Creates new form JFramePrincipal
@@ -631,7 +635,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Mercurio
+     * @param evt boton de Mercurio
+     */
     private void btMercurioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMercurioActionPerformed
         //Colorear botón Mercurio
         limpiarColores();
@@ -650,7 +657,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btMercurioActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Venus
+     * @param evt boton de Venus
+     */
     private void btVenusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVenusActionPerformed
         limpiarColores();
         btVenus.setBackground(new Color(255,255,204));
@@ -668,7 +678,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btVenusActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Tierra
+     * @param evt boton de Tierra
+     */
     private void btTierraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTierraActionPerformed
         limpiarColores();
         btTierra.setBackground(new Color(255,255,204));
@@ -686,7 +699,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btTierraActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Marte
+     * @param evt boton de Marte
+     */
     private void btMarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMarteActionPerformed
         limpiarColores();
         btMarte.setBackground(new Color(255,255,204));
@@ -704,7 +720,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btMarteActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Jupiter
+     * @param evt boton de Jupiter
+     */
     private void btJupiterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btJupiterActionPerformed
         limpiarColores();
         btJupiter.setBackground(new Color(255,255,204));
@@ -722,7 +741,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btJupiterActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Saturno
+     * @param evt boton de Saturno
+     */
     private void btSaturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaturnoActionPerformed
         limpiarColores();
         btSaturno.setBackground(new Color(255,255,204));
@@ -740,7 +762,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btSaturnoActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Urano
+     * @param evt boton de Urano
+     */
     private void btUranoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUranoActionPerformed
         limpiarColores();
         btUrano.setBackground(new Color(255,255,204));
@@ -758,7 +783,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btUranoActionPerformed
-
+    /**
+     * Metodo que actualiza la informacion del JFrame con los datos de Neptuno
+     * @param evt boton de Neptuno
+     */
     private void btNeptunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNeptunoActionPerformed
         limpiarColores();
         btNeptuno.setBackground(new Color(255,255,204));
@@ -776,7 +804,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btNeptunoActionPerformed
-
+    /**
+     * Metodo que cambia la opcion del ComboBox de satelites
+     * @param evt opcion de ComboBox seleccionada
+     */
     private void cbSatelitesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSatelitesItemStateChanged
         // TODO add your handling code here:
         String sateliteNombre = (String) evt.getItem();
@@ -794,6 +825,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cbSatelitesItemStateChanged
 
     /**
+     * Main class
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -808,13 +840,23 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         
     }
-    
+    /**
+     * Obtiene los datos de un nombre de planeta que le doy
+     * @param nombrePlaneta Nombre del planeta
+     * @return Planeta objeto con los datos de planeta
+     * @throws java.sql.SQLException SQL Exception
+     */
     public Planeta obtenerDatosPlaneta(String nombrePlaneta) throws SQLException{
         String query = "SELECT * FROM Planetas WHERE nombre = '" + nombrePlaneta + "'";
         ResultSet planeta = connection.selectQuery(query);
         return new Planeta(planeta);
     }
-    
+    /**
+     * Obtiene los datos de los satelites de un planeta
+     * @param nombrePlaneta Nombre del planeta
+     * @return List lista de satelites del planeta
+     * @throws java.sql.SQLException SQL Exception
+     */
     public List<Satelite> obtenerDatosSatelites(String nombrePlaneta) throws SQLException{
         String query = "SELECT * FROM Satelites WHERE planeta = '" + nombrePlaneta + "'";
         ResultSet sats = connection.selectQuery(query);
@@ -827,7 +869,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         
         return satelites;
     }
-    
+    /**
+     * Actualiza los valores del planeta en el JFrame
+     * @param planeta Objeto del planeta para actualizar datos en JFrame
+     */
     public void establecerValoresPlaneta(Planeta planeta){
         lblPlanetaNombre.setText(planeta.getNombre());
         lblPlanetaRadioValue.setText(String.valueOf(planeta.getRadio()));
@@ -837,7 +882,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         lblPlanetaPeriodoValue.setText(String.valueOf(planeta.getPeriodoOrbital()));
         imgPlaneta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/"+planeta.getNombre()+".png")));
     }
-    
+    /**
+     * Actualiza los valores de los satelites en el JFrame
+     * @param planeta Objeto del planeta para actualizar datos en JFrame
+     * @throws java.sql.SQLException SQL Exception
+     */
     public void establecerValoresSatelites(Planeta planeta) throws SQLException{
         
         if(planeta.getNumeroSatelites()>0){
@@ -880,7 +929,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
         
     }
-    
+    /**
+     * Metodo para colorear correctanente los botones de los planetas
+     */
     public void limpiarColores(){
         btMercurio.setBackground(new Color(102,0,0));
         btVenus.setBackground(new Color(102,0,0));
