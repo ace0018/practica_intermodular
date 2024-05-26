@@ -4,17 +4,31 @@
  */
 package ejercicio1_tema14.practica_intermodular;
 
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
  */
 public class JFramePrincipal extends javax.swing.JFrame {
 
+    private List<Satelite> satelites = new ArrayList<>();
+    
+    private static MySQLConnector connection = null;
     /**
      * Creates new form JFramePrincipal
      */
     public JFramePrincipal() {
         initComponents();
+        getContentPane().setBackground(Color.BLACK);
+        setLocationRelativeTo(null);
+        cbSatelites.setVisible(false);
     }
 
     /**
@@ -26,78 +40,362 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imgSol = new javax.swing.JLabel();
+        lblPlanetaNombre = new javax.swing.JLabel();
+        btMercurio = new javax.swing.JButton();
+        btTierra = new javax.swing.JButton();
+        btMarte = new javax.swing.JButton();
+        btJupiter = new javax.swing.JButton();
+        btSaturno = new javax.swing.JButton();
+        btUrano = new javax.swing.JButton();
+        btNeptuno = new javax.swing.JButton();
+        separador = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        imgPlaneta = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        lblSol = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        btVenus = new javax.swing.JButton();
+        lblSatelites = new javax.swing.JLabel();
+        lblSatelitesValue = new javax.swing.JLabel();
+        cbSatelites = new javax.swing.JComboBox<>();
+        lblSatTipo = new javax.swing.JLabel();
+        lblSatTipoValue = new javax.swing.JLabel();
+        lblSatNombre = new javax.swing.JLabel();
+        lblSatRadio = new javax.swing.JLabel();
+        lblSatTemperatura = new javax.swing.JLabel();
+        lblSatDistancia = new javax.swing.JLabel();
+        lblSatPeriodo = new javax.swing.JLabel();
+        lblSatPeriodoValue = new javax.swing.JLabel();
+        lblSatDistanciaValue = new javax.swing.JLabel();
+        lblSatTemperaturaValue = new javax.swing.JLabel();
+        lblSatRadioValue = new javax.swing.JLabel();
+        lblSatNombreValue = new javax.swing.JLabel();
+        imgSatelite = new javax.swing.JLabel();
+        lblPlanetaTipo = new javax.swing.JLabel();
+        lblPlanetaTipoValue = new javax.swing.JLabel();
+        lblPlanetaRadio = new javax.swing.JLabel();
+        lblPlanetaTemperatura = new javax.swing.JLabel();
+        lblPlanetaDistancia = new javax.swing.JLabel();
+        lblPlanetaPeriodo = new javax.swing.JLabel();
+        lblPlanetaPeriodoValue = new javax.swing.JLabel();
+        lblPlanetaDistanciaValue = new javax.swing.JLabel();
+        lblPlanetaTemperaturaValue = new javax.swing.JLabel();
+        lblPlanetaRadioValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(1500, 720));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1500, 720));
 
-        jLabel1.setText("Tipo de estrella");
+        imgSol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OzX.gif"))); // NOI18N
+        imgSol.setText("jLabel4");
 
-        jLabel2.setText("asfdf");
+        lblPlanetaNombre.setBackground(new java.awt.Color(0, 0, 0));
+        lblPlanetaNombre.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblPlanetaNombre.setForeground(new java.awt.Color(255, 255, 204));
+        lblPlanetaNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlanetaNombre.setText("PLANETA");
 
-        jLabel3.setText("Radio");
+        btMercurio.setBackground(new java.awt.Color(102, 0, 0));
+        btMercurio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btMercurio.setForeground(new java.awt.Color(255, 255, 255));
+        btMercurio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Mercurio.png"))); // NOI18N
+        btMercurio.setText("Mercurio");
+        btMercurio.setBorderPainted(false);
+        btMercurio.setFocusPainted(false);
+        btMercurio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btMercurio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMercurioActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Temperatura");
+        btTierra.setBackground(new java.awt.Color(102, 0, 0));
+        btTierra.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btTierra.setForeground(new java.awt.Color(255, 255, 255));
+        btTierra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Tierra.png"))); // NOI18N
+        btTierra.setText("Tierra");
+        btTierra.setBorderPainted(false);
+        btTierra.setFocusPainted(false);
+        btTierra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btTierra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTierraActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Distancia");
+        btMarte.setBackground(new java.awt.Color(102, 0, 0));
+        btMarte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btMarte.setForeground(new java.awt.Color(255, 255, 255));
+        btMarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Marte.png"))); // NOI18N
+        btMarte.setText("Marte");
+        btMarte.setBorderPainted(false);
+        btMarte.setFocusPainted(false);
+        btMarte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btMarte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMarteActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("Composicion");
+        btJupiter.setBackground(new java.awt.Color(102, 0, 0));
+        btJupiter.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btJupiter.setForeground(new java.awt.Color(255, 255, 255));
+        btJupiter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Jupiter.png"))); // NOI18N
+        btJupiter.setText("Jupiter");
+        btJupiter.setBorderPainted(false);
+        btJupiter.setFocusPainted(false);
+        btJupiter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btJupiter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btJupiterActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setText("Estrella");
+        btSaturno.setBackground(new java.awt.Color(102, 0, 0));
+        btSaturno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btSaturno.setForeground(new java.awt.Color(255, 255, 255));
+        btSaturno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/saturno.png"))); // NOI18N
+        btSaturno.setText("Saturno");
+        btSaturno.setBorderPainted(false);
+        btSaturno.setFocusPainted(false);
+        btSaturno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btSaturno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSaturnoActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setText("SOL");
+        btUrano.setBackground(new java.awt.Color(102, 0, 0));
+        btUrano.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btUrano.setForeground(new java.awt.Color(255, 255, 255));
+        btUrano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Urano.png"))); // NOI18N
+        btUrano.setText("Urano");
+        btUrano.setBorderPainted(false);
+        btUrano.setFocusPainted(false);
+        btUrano.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btUrano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUranoActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setText("asfdf");
+        btNeptuno.setBackground(new java.awt.Color(102, 0, 0));
+        btNeptuno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btNeptuno.setForeground(new java.awt.Color(255, 255, 255));
+        btNeptuno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Neptuno.png"))); // NOI18N
+        btNeptuno.setText("Neptuno");
+        btNeptuno.setBorderPainted(false);
+        btNeptuno.setFocusPainted(false);
+        btNeptuno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btNeptuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNeptunoActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setText("asfdf");
+        separador.setBackground(new java.awt.Color(51, 0, 0));
+        separador.setForeground(new java.awt.Color(204, 204, 204));
+        separador.setBorder(null);
+        separador.setFocusable(false);
 
-        jLabel13.setText("asfdf");
+        jLabel1.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(149, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("angel caballero espinosa");
+        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 0), 3, true));
+        jLabel1.setOpaque(true);
 
-        jLabel14.setText("asfdf");
+        jLabel3.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(149, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("SISTEMA SOLAR : ESTRELLA - PLANETAS - SATELITES");
+        jLabel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 0), 3, true));
+        jLabel3.setOpaque(true);
 
-        jLabel10.setText("PROYECTO INTERMODULAR                         SISTEMA SOLAR                         ANGEL CABALLERO ESPINOSA");
+        imgPlaneta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/planeta.jpg"))); // NOI18N
 
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jLabel7.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel7.setText("Tipo de estrella: ");
 
-        jButton1.setText("jButton1");
+        jLabel8.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel8.setText("Radio (km): ");
 
-        jButton2.setText("jButton2");
+        jLabel9.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel9.setText("Temperatura Superficial (ºC): ");
 
-        jButton3.setText("jButton3");
+        jLabel10.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel10.setText("Distancia media a la tierra (millones de km): ");
 
-        jButton4.setText("jButton4");
+        jLabel11.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel11.setText("Composición:");
 
-        jButton5.setText("jButton5");
+        lblSol.setBackground(new java.awt.Color(0, 0, 0));
+        lblSol.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblSol.setForeground(new java.awt.Color(255, 51, 51));
+        lblSol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSol.setText("SOL");
 
-        jButton6.setText("jButton6");
+        jLabel6.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText(" 74% Hidrógeno, 24% Helio, 2% Otros");
 
-        jButton7.setText("jButton7");
+        jLabel12.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("149.6");
 
-        jButton8.setText("jButton8");
+        jLabel14.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("5500");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ElSol.jpg"))); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("696340");
+
+        jLabel16.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("G2V");
+
+        btVenus.setBackground(new java.awt.Color(102, 0, 0));
+        btVenus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btVenus.setForeground(new java.awt.Color(255, 255, 255));
+        btVenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconButtons/Venus.png"))); // NOI18N
+        btVenus.setText("Venus");
+        btVenus.setBorderPainted(false);
+        btVenus.setFocusPainted(false);
+        btVenus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btVenus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVenusActionPerformed(evt);
+            }
+        });
+
+        lblSatelites.setFont(new java.awt.Font("Lucida Fax", 1, 18)); // NOI18N
+        lblSatelites.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatelites.setText("Número de satélites");
+
+        lblSatelitesValue.setFont(new java.awt.Font("Lucida Fax", 1, 18)); // NOI18N
+        lblSatelitesValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatelitesValue.setText("-");
+
+        cbSatelites.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSatelites.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbSatelitesItemStateChanged(evt);
+            }
+        });
+
+        lblSatTipo.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatTipo.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatTipo.setText("Tipo de cuerpo: ");
+
+        lblSatTipoValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatTipoValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatTipoValue.setText("-");
+
+        lblSatNombre.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatNombre.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatNombre.setText("Nombre");
+
+        lblSatRadio.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatRadio.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatRadio.setText("Radio (km): ");
+
+        lblSatTemperatura.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatTemperatura.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatTemperatura.setText("Temperatura Media (ºC): ");
+
+        lblSatDistancia.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatDistancia.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatDistancia.setText("Distancia media a su planeta (km): ");
+
+        lblSatPeriodo.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatPeriodo.setForeground(new java.awt.Color(0, 153, 153));
+        lblSatPeriodo.setText("Período Orbital (días): ");
+
+        lblSatPeriodoValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatPeriodoValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatPeriodoValue.setText("-");
+
+        lblSatDistanciaValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatDistanciaValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatDistanciaValue.setText("-");
+
+        lblSatTemperaturaValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatTemperaturaValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatTemperaturaValue.setText("-");
+
+        lblSatRadioValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatRadioValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatRadioValue.setText("-");
+
+        lblSatNombreValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblSatNombreValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblSatNombreValue.setText("-");
+
+        imgSatelite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistemasolargif.gif"))); // NOI18N
+        imgSatelite.setText("jLabel43");
+        imgSatelite.setMaximumSize(new java.awt.Dimension(180, 180));
+        imgSatelite.setMinimumSize(new java.awt.Dimension(180, 180));
+        imgSatelite.setPreferredSize(new java.awt.Dimension(180, 180));
+
+        lblPlanetaTipo.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaTipo.setForeground(new java.awt.Color(255, 102, 102));
+        lblPlanetaTipo.setText("Tipo de cuerpo: ");
+
+        lblPlanetaTipoValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaTipoValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblPlanetaTipoValue.setText("-");
+
+        lblPlanetaRadio.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaRadio.setForeground(new java.awt.Color(255, 102, 102));
+        lblPlanetaRadio.setText("Radio (km): ");
+
+        lblPlanetaTemperatura.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaTemperatura.setForeground(new java.awt.Color(255, 102, 102));
+        lblPlanetaTemperatura.setText("Temperatura Media (ºC): ");
+
+        lblPlanetaDistancia.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaDistancia.setForeground(new java.awt.Color(255, 102, 102));
+        lblPlanetaDistancia.setText("Distancia media a su planeta (km): ");
+
+        lblPlanetaPeriodo.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaPeriodo.setForeground(new java.awt.Color(255, 102, 102));
+        lblPlanetaPeriodo.setText("Período Orbital (días): ");
+
+        lblPlanetaPeriodoValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaPeriodoValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblPlanetaPeriodoValue.setText("-");
+
+        lblPlanetaDistanciaValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaDistanciaValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblPlanetaDistanciaValue.setText("-");
+
+        lblPlanetaTemperaturaValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaTemperaturaValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblPlanetaTemperaturaValue.setText("-");
+
+        lblPlanetaRadioValue.setFont(new java.awt.Font("Lucida Fax", 1, 14)); // NOI18N
+        lblPlanetaRadioValue.setForeground(new java.awt.Color(255, 255, 204));
+        lblPlanetaRadioValue.setText("-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,178 +404,554 @@ public class JFramePrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imgSol, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(lblSol, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(92, 92, 92)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel16)))
+                        .addGap(32, 32, 32)))
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btMercurio, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btVenus, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btTierra, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btMarte, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btJupiter, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btSaturno, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btUrano, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btNeptuno, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPlanetaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imgPlaneta, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPlanetaRadio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPlanetaRadioValue))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPlanetaPeriodo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblPlanetaPeriodoValue))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPlanetaTipo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblPlanetaTipoValue))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPlanetaDistancia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblPlanetaDistanciaValue))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPlanetaTemperatura)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPlanetaTemperaturaValue)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton4))
+                                        .addComponent(lblSatRadio)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblSatRadioValue))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton6)
+                                        .addComponent(lblSatPeriodo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton7)
+                                        .addComponent(lblSatPeriodoValue))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblSatTipo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton8)))))
-                        .addGap(0, 4, Short.MAX_VALUE)))
-                .addContainerGap())
+                                        .addComponent(lblSatTipoValue))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblSatNombre)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblSatNombreValue))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblSatDistancia)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblSatDistanciaValue))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(imgSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(lblSatTemperatura)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblSatTemperaturaValue))))
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblSatelites)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblSatelitesValue))
+                                    .addComponent(cbSatelites, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(103, 103, 103))))))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel10)
+                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblSol, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imgSol)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(lblPlanetaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(imgPlaneta, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPlanetaRadio)
+                            .addComponent(lblPlanetaRadioValue))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPlanetaTemperatura)
+                            .addComponent(lblPlanetaTemperaturaValue))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPlanetaDistancia)
+                            .addComponent(lblPlanetaDistanciaValue))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPlanetaTipo)
+                            .addComponent(lblPlanetaTipoValue))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPlanetaPeriodo)
+                            .addComponent(lblPlanetaPeriodoValue)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblSatelites)
+                                .addComponent(lblSatelitesValue))
+                            .addComponent(btMercurio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                                .addComponent(jLabel16)
-                                .addGap(61, 61, 61)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                .addComponent(btVenus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(btTierra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btMarte, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btJupiter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btSaturno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btUrano, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btNeptuno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbSatelites, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+                                .addComponent(imgSatelite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel9))
-                                .addGap(18, 18, 18)
+                                    .addComponent(lblSatNombre)
+                                    .addComponent(lblSatNombreValue))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel12))
-                                .addGap(18, 18, 18)
+                                    .addComponent(lblSatRadio)
+                                    .addComponent(lblSatRadioValue))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel13))
-                                .addGap(18, 18, 18)
+                                    .addComponent(lblSatTemperatura)
+                                    .addComponent(lblSatTemperaturaValue))
+                                .addGap(7, 7, 7)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel14))
-                                .addGap(89, 89, 89))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jSeparator2)
-                                .addGap(15, 15, 15))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
-                        .addGap(182, 182, 182)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6)
-                            .addComponent(jButton7)
-                            .addComponent(jButton8))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(lblSatDistancia)
+                                    .addComponent(lblSatDistanciaValue))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblSatTipo)
+                                    .addComponent(lblSatTipoValue))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblSatPeriodo)
+                                    .addComponent(lblSatPeriodoValue)))))
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btMercurioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMercurioActionPerformed
+        //Colorear botón Mercurio
+        limpiarColores();
+        btMercurio.setBackground(new Color(255,255,204));
+        btMercurio.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Mercurio
+            Planeta planeta = obtenerDatosPlaneta("Mercurio");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Mercurio
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btMercurioActionPerformed
+
+    private void btVenusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVenusActionPerformed
+        limpiarColores();
+        btVenus.setBackground(new Color(255,255,204));
+        btVenus.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Venus
+            Planeta planeta = obtenerDatosPlaneta("Venus");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Venus
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btVenusActionPerformed
+
+    private void btTierraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTierraActionPerformed
+        limpiarColores();
+        btTierra.setBackground(new Color(255,255,204));
+        btTierra.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Tierra
+            Planeta planeta = obtenerDatosPlaneta("Tierra");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Tierra
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btTierraActionPerformed
+
+    private void btMarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMarteActionPerformed
+        limpiarColores();
+        btMarte.setBackground(new Color(255,255,204));
+        btMarte.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Marte
+            Planeta planeta = obtenerDatosPlaneta("Marte");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Marte
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btMarteActionPerformed
+
+    private void btJupiterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btJupiterActionPerformed
+        limpiarColores();
+        btJupiter.setBackground(new Color(255,255,204));
+        btJupiter.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Jupiter
+            Planeta planeta = obtenerDatosPlaneta("Jupiter");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Jupiter
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btJupiterActionPerformed
+
+    private void btSaturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaturnoActionPerformed
+        limpiarColores();
+        btSaturno.setBackground(new Color(255,255,204));
+        btSaturno.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Saturno
+            Planeta planeta = obtenerDatosPlaneta("Saturno");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Saturno
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btSaturnoActionPerformed
+
+    private void btUranoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUranoActionPerformed
+        limpiarColores();
+        btUrano.setBackground(new Color(255,255,204));
+        btUrano.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Urano
+            Planeta planeta = obtenerDatosPlaneta("Urano");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Urano
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btUranoActionPerformed
+
+    private void btNeptunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNeptunoActionPerformed
+        limpiarColores();
+        btNeptuno.setBackground(new Color(255,255,204));
+        btNeptuno.setForeground(new Color(102,0,0));
+        
+        try {
+            //Obtener datos de Neptuno
+            Planeta planeta = obtenerDatosPlaneta("Neptuno");
+            //Establecer valores
+            establecerValoresPlaneta(planeta);
+            
+            //Obtener y establecer valores satelites de Neptuno
+            establecerValoresSatelites(planeta);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btNeptunoActionPerformed
+
+    private void cbSatelitesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSatelitesItemStateChanged
+        // TODO add your handling code here:
+        String sateliteNombre = (String) evt.getItem();
+        for(Satelite sat: satelites){
+            if(sat.getNombre().equalsIgnoreCase(sateliteNombre)){
+                lblSatNombreValue.setText(sat.getNombre());
+                lblSatRadioValue.setText(String.valueOf(sat.getRadio()));
+                lblSatTemperaturaValue.setText(String.valueOf(sat.getTemperaturaMedia()));
+                lblSatDistanciaValue.setText(String.valueOf(sat.getDistanciaMediaPlaneta()));
+                lblSatTipoValue.setText(sat.getTipoCuerpo());
+                lblSatPeriodoValue.setText(String.valueOf(sat.getPeriodoOrbital()));
+                break;
+            }
+        }
+    }//GEN-LAST:event_cbSatelitesItemStateChanged
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
+        connection = new MySQLConnector("practica_intermodular","root","Einyel","localhost","3306");
+        connection.connect();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run(){
                 new JFramePrincipal().setVisible(true);
             }
         });
+        
+    }
+    
+    public Planeta obtenerDatosPlaneta(String nombrePlaneta) throws SQLException{
+        String query = "SELECT * FROM Planetas WHERE nombre = '" + nombrePlaneta + "'";
+        ResultSet planeta = connection.selectQuery(query);
+        return new Planeta(planeta);
+    }
+    
+    public List<Satelite> obtenerDatosSatelites(String nombrePlaneta) throws SQLException{
+        String query = "SELECT * FROM Satelites WHERE planeta = '" + nombrePlaneta + "'";
+        ResultSet sats = connection.selectQuery(query);
+        
+        while(sats.next()){
+            System.out.println("Pasamos al satelite 1: " + sats.getString("nombre"));
+            Satelite satelite = new Satelite(sats);
+            satelites.add(satelite);
+        }
+        
+        return satelites;
+    }
+    
+    public void establecerValoresPlaneta(Planeta planeta){
+        lblPlanetaNombre.setText(planeta.getNombre());
+        lblPlanetaRadioValue.setText(String.valueOf(planeta.getRadio()));
+        lblPlanetaTemperaturaValue.setText(String.valueOf(planeta.getTemperaturaMedia()));
+        lblPlanetaDistanciaValue.setText(String.valueOf(planeta.getDistanciaMediaSol()));
+        lblPlanetaTipoValue.setText(planeta.getTipoPlaneta());
+        lblPlanetaPeriodoValue.setText(String.valueOf(planeta.getPeriodoOrbital()));
+        imgPlaneta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/"+planeta.getNombre()+".png")));
+    }
+    
+    public void establecerValoresSatelites(Planeta planeta) throws SQLException{
+        
+        if(planeta.getNumeroSatelites()>0){
+            satelites.clear();
+            satelites = obtenerDatosSatelites(planeta.getNombre());
+
+            Satelite satelite1 = satelites.get(0);
+            lblSatelitesValue.setText(String.valueOf(satelites.size()));
+            imgSatelite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/satelite"+satelite1.getPlaneta()+".png")));
+
+            if(satelites.size()>1){
+                cbSatelites.setVisible(true);
+                cbSatelites.removeAllItems();
+
+                for(Satelite sat: satelites){
+                    cbSatelites.addItem(sat.getNombre());
+                }
+
+                cbSatelites.setSelectedIndex(0);
+            }else{
+                cbSatelites.setVisible(false);
+            }
+
+            lblSatNombreValue.setText(satelite1.getNombre());
+            lblSatRadioValue.setText(String.valueOf(satelite1.getRadio()));
+            lblSatTemperaturaValue.setText(String.valueOf(satelite1.getTemperaturaMedia()));
+            lblSatDistanciaValue.setText(String.valueOf(satelite1.getDistanciaMediaPlaneta()));
+            lblSatTipoValue.setText(satelite1.getTipoCuerpo());
+            lblSatPeriodoValue.setText(String.valueOf(satelite1.getPeriodoOrbital()));
+        }else{
+            imgSatelite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistemasolargif.gif")));
+            cbSatelites.setVisible(false);
+            lblSatelitesValue.setText("0");
+            lblSatNombreValue.setText("-");
+            lblSatRadioValue.setText("-");
+            lblSatTemperaturaValue.setText("-");
+            lblSatDistanciaValue.setText("-");
+            lblSatTipoValue.setText("-");
+            lblSatPeriodoValue.setText("-");
+        }
+        
+    }
+    
+    public void limpiarColores(){
+        btMercurio.setBackground(new Color(102,0,0));
+        btVenus.setBackground(new Color(102,0,0));
+        btTierra.setBackground(new Color(102,0,0));
+        btMarte.setBackground(new Color(102,0,0));
+        btJupiter.setBackground(new Color(102,0,0));
+        btSaturno.setBackground(new Color(102,0,0));
+        btUrano.setBackground(new Color(102,0,0));
+        btNeptuno.setBackground(new Color(102,0,0));
+        
+        btMercurio.setForeground(Color.WHITE);
+        btVenus.setForeground(Color.WHITE);
+        btTierra.setForeground(Color.WHITE);
+        btMarte.setForeground(Color.WHITE);
+        btJupiter.setForeground(Color.WHITE);
+        btSaturno.setForeground(Color.WHITE);
+        btUrano.setForeground(Color.WHITE);
+        btNeptuno.setForeground(Color.WHITE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton btJupiter;
+    private javax.swing.JButton btMarte;
+    private javax.swing.JButton btMercurio;
+    private javax.swing.JButton btNeptuno;
+    private javax.swing.JButton btSaturno;
+    private javax.swing.JButton btTierra;
+    private javax.swing.JButton btUrano;
+    private javax.swing.JButton btVenus;
+    private javax.swing.JComboBox<String> cbSatelites;
+    private javax.swing.JLabel imgPlaneta;
+    private javax.swing.JLabel imgSatelite;
+    private javax.swing.JLabel imgSol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblPlanetaDistancia;
+    private javax.swing.JLabel lblPlanetaDistanciaValue;
+    private javax.swing.JLabel lblPlanetaNombre;
+    private javax.swing.JLabel lblPlanetaPeriodo;
+    private javax.swing.JLabel lblPlanetaPeriodoValue;
+    private javax.swing.JLabel lblPlanetaRadio;
+    private javax.swing.JLabel lblPlanetaRadioValue;
+    private javax.swing.JLabel lblPlanetaTemperatura;
+    private javax.swing.JLabel lblPlanetaTemperaturaValue;
+    private javax.swing.JLabel lblPlanetaTipo;
+    private javax.swing.JLabel lblPlanetaTipoValue;
+    private javax.swing.JLabel lblSatDistancia;
+    private javax.swing.JLabel lblSatDistanciaValue;
+    private javax.swing.JLabel lblSatNombre;
+    private javax.swing.JLabel lblSatNombreValue;
+    private javax.swing.JLabel lblSatPeriodo;
+    private javax.swing.JLabel lblSatPeriodoValue;
+    private javax.swing.JLabel lblSatRadio;
+    private javax.swing.JLabel lblSatRadioValue;
+    private javax.swing.JLabel lblSatTemperatura;
+    private javax.swing.JLabel lblSatTemperaturaValue;
+    private javax.swing.JLabel lblSatTipo;
+    private javax.swing.JLabel lblSatTipoValue;
+    private javax.swing.JLabel lblSatelites;
+    private javax.swing.JLabel lblSatelitesValue;
+    private javax.swing.JLabel lblSol;
+    private javax.swing.JButton separador;
     // End of variables declaration//GEN-END:variables
 }
